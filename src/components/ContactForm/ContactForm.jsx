@@ -11,12 +11,15 @@ export class ContactForm extends Component {
     this.setState({ [evt.target.name]: evt.target.value });
   };
 
+  resetForm = () => {
+    this.setState({ name: '', number: '' });
+  };
+
   handleSubmit = evt => {
     evt.preventDefault();
     const { name, number } = this.state;
 
-    this.props.handleAddContact(name, number);
-    this.setState({ name: '', number: '' });
+    this.props.handleAddContact(name, number, this.resetForm);
   };
 
   render() {

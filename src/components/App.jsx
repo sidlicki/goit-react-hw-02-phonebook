@@ -21,7 +21,7 @@ export class App extends Component {
     filter: '',
   };
 
-  handleAddContact = (name, number) => {
+  handleAddContact = (name, number, resetForm) => {
     const { contacts } = this.state;
 
     if (
@@ -29,7 +29,7 @@ export class App extends Component {
         contact => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
-      alert(`Контакт з іменем "${name}" вже існує.`);
+      alert(`A contact with the name "${name}" already exists.`);
       return;
     }
 
@@ -42,6 +42,7 @@ export class App extends Component {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
+    resetForm(); //передав з ContactForm.jsx щоб скинути форму тільки за умови якщо контакт додався, якщо вибило алерт на 32стрічці -  то щоб не сикдалось.
   };
 
   handleDeleteContact = id => {
